@@ -1,0 +1,97 @@
+Standar API
+
+[METHOD] : {root.api}/{version}/{grouping}/{endpoint}
+SAMPLE:
+[POST] : http:api.knowme.com/v1/auth/login
+
+===================================================================
+
+Standar Status Response
+
+200 - OK                    --> Call API Success
+201 - CREATED               --> POST Success
+400 - BAD REQUEST           --> Error on Client Side (Bisa input dll).
+401 - UNAUTHORIZED          --> User not authorized to request.
+404 - FORBIDDEN             --> User not allowed to access.
+404 - NOT FOUND             --> Request Endpoint Not Found.
+500 - INTERNAL SERVER ERROR --> Error on Server. 
+502 - BAD GATEWAY           --> Invalid Response From Another Request.
+
+==================================================================
+
+GROUP: Authentication
+[1] - Register
+[POST] : {root.api}/{version}/auth/register
+
+req:
+{
+    "name": "Testing",
+    "email": "test@gmail.com",
+    "password": "abc123",
+}
+
+res:
+{
+    "message":"Register Success",
+    "data":
+    {
+        "name": "Testing",
+        "email": "test@gmail.com",
+        "password": "abc123",
+    }
+}
+
+err-response:
+201 - Registrasi Akun Berhasil
+400 - Input yang anda masukan tidak valid
+
+==========================================================================
+GROUP: Auth
+[2] - Login
+{root.api}/{version}/auth/login
+
+
+==========================================================================
+GROUP: Blog
+[1] - Create Blog
+[POST] : {root.api}/{version}/blog/post
+req: 
+{
+    "title":"Title Blog",
+    "image":"imagefile.png",
+    "body":"lorem ipsum is simply dummy text of the printing",
+}
+
+res:
+{
+    "message":"Create Blog Post Success",
+    "data":
+            {
+                "post_id":1,
+                "title":"Title Blog",
+                "image":"imagefile.png",
+                "body":"lorem ipsum is simply dummy text of the printing",
+                "created_at":"12/08/23",
+                "author":{
+                    "uid":1,
+                    "name": "Testing",
+                }
+            }
+}
+
+err-response:
+201 - Blog Post Berhasil Dibuat
+400 - Input yang anda masukan tidak valid
+==========================================================================
+GROUP: Blog
+[2] - Get All Blog
+==========================================================================
+GROUP: Blog
+[3] - Get Detail Blog
+==========================================================================
+GROUP: Blog
+[4] - Update Blog
+==========================================================================
+GROUP: Blog
+[5] - Delete Blog
+========================================================================
